@@ -16,13 +16,13 @@ public class ScantronPrinter implements Printable {
 
     private final String name;
     private final String id;
-    private final String team;
+    private final String division;
     private final boolean pbs;
 
-    public ScantronPrinter(String name, String id, String team, boolean pbs) {
+    public ScantronPrinter(String name, String id, String division, boolean pbs) {
         this.name = name;
         this.id = id;
-        this.team = team;
+        this.division = division;
         this.pbs = pbs;
     }
 
@@ -49,10 +49,12 @@ public class ScantronPrinter implements Printable {
         g.setFont(g.getFont().deriveFont(16f));
 
         g.drawString(name, dpiCon(950), dpiCon(2840));
-        g.drawString("Berkeley Prep", dpiCon(1050), dpiCon(2940));
+        g.drawString(division, dpiCon(1000), dpiCon(2940));
+        g.setFont(g.getFont().deriveFont(12f));
+        g.drawString("Berkeley Prep", dpiCon(1220), dpiCon(3040));
 
         g.setFont(new Font("Courier New", Font.PLAIN, 20));
-        g.drawString("4050"+id+team, 217, 330);
+        g.drawString("4050"+id, 217, 330);
 
         return PAGE_EXISTS;
     }

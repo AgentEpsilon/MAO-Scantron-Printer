@@ -15,9 +15,7 @@ public class MAOSPForm {
     private JTextField fieldID;
     private JPanel contentPane;
     private JCheckBox printBackgroundScantron;
-    private JRadioButton a0RadioButton;
-    private JRadioButton a2RadioButton;
-    private JRadioButton a1RadioButton;
+    private JTextField fieldDivision;
 
     public MAOSPForm() {
         clear.addMouseListener(new MouseAdapter() {
@@ -25,24 +23,12 @@ public class MAOSPForm {
             public void mouseReleased(MouseEvent e) {
                 fieldName.setText("");
                 fieldID.setText("");
-                a0RadioButton.setSelected(true);
             }
         });
         print.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                String team;
-                if(a0RadioButton.isSelected()){
-                    team = "0";
-                }else if(a1RadioButton.isSelected()){
-                    team = "1";
-                }else if(a2RadioButton.isSelected()){
-                    team ="2";
-                }else{
-                    System.err.println("No team selected!!! Choosing team 0.");
-                    team = "0";
-                }
-                ScantronPrinter.printScantron(new ScantronPrinter(fieldName.getText(), fieldID.getText(), team, printBackgroundScantron.isSelected()));
+                ScantronPrinter.printScantron(new ScantronPrinter(fieldName.getText(), fieldID.getText(), fieldDivision.getText(), printBackgroundScantron.isSelected()));
             }
         });
     }
